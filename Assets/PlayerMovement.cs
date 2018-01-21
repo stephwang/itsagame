@@ -4,35 +4,53 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-	public float speed;
+	// Elements
 	Animator anim;
+
+	// Public variables
+	public float speed;
 
 	void Start() {
 		anim = GetComponent<Animator> ();
 	}
 
-	void FixedUpdate()
+	void Update()
 	{
+		// Keep character facing the mouse
+		UpdateRotation();
+
 		// Movement
+		Walk();
+
+		//Basic attack
+		bool inputAttack = Input.GetKeyDown(KeyCode.Space);
+		if (inputAttack == true) {
+			anim.SetTrigger ("attack");
+		}
+	}
+
+	// Move player transform and trigger walk animation
+	void Walk() {
 		float inputX = Input.GetAxis ("Horizontal");
 		float inputY = Input.GetAxis ("Vertical");
 
 		if (inputX != 0 || inputY != 0) {
 			Vector2 playerInputVector = new Vector2 (inputX, inputY);
-			GetComponent<Rigidbody2D> ().velocity = playerInputVector * speed;
-			anim.SetFloat ("faceX", inputX);
-			anim.SetFloat ("faceY", inputY);
-			anim.Play ("Walk");
-		} else {
-			anim.Play("Idle");
-			GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+			transform.Translate (playerInputVector * speed);
+			anim.SetBool ("walk", true);
 		}
-
-		//Basic attack
-		bool inputAttack = Input.GetKeyDown(KeyCode.Space);
-
-		if (inputAttack == true) {
-			anim.Play ("Attack");
+		else {
+			anim.SetBool ("walk", false);
 		}
+	}
+
+	// Rotates the character to face the mouse
+	void UpdateRotation() {
+		Vector3 mouseCoords = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		Vector3 dir = mouseCoords - transform.position;
+		var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+		transform.GetChild(0).rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+		anim.SetFloat ("faceX", dir.x);
+		anim.SetFloat ("faceY", dir.y);
 	}
 }
