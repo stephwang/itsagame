@@ -25,8 +25,18 @@ public class PlayerMovement : MonoBehaviour {
 		//Basic attack
 		bool inputAttack = Input.GetKeyDown(KeyCode.Space);
 		if (inputAttack == true) {
-			anim.SetTrigger ("attack");
+			Debug.Log ("attack!");
 		}
+	}
+
+	// Rotates the character to face the mouse
+	void UpdateRotation() {
+		Vector3 mouseCoords = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		Vector3 dir = mouseCoords - transform.position;
+		var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+		transform.GetChild(0).rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+		anim.SetFloat ("faceX", dir.x);
+		anim.SetFloat ("faceY", dir.y);
 	}
 
 	// Move player transform and trigger walk animation
@@ -42,15 +52,5 @@ public class PlayerMovement : MonoBehaviour {
 		else {
 			anim.SetBool ("walk", false);
 		}
-	}
-
-	// Rotates the character to face the mouse
-	void UpdateRotation() {
-		Vector3 mouseCoords = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		Vector3 dir = mouseCoords - transform.position;
-		var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-		transform.GetChild(0).rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-		anim.SetFloat ("faceX", dir.x);
-		anim.SetFloat ("faceY", dir.y);
 	}
 }
