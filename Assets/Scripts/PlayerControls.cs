@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerControls : MonoBehaviour {
 
 	// Elements
 	Animator anim;
@@ -20,11 +20,9 @@ public class PlayerMovement : MonoBehaviour {
 		// Movement
 		Walk();
 
-		//Basic attack
-		bool inputAttack = Input.GetKeyDown(KeyCode.Space);
-		if (inputAttack == true) {
-			Debug.Log ("attack!");
-		}
+		// Abilities
+		UseAbility();
+		SwitchAbilitySets ();
 	}
 
 	// Rotates the character to face the mouse
@@ -44,11 +42,22 @@ public class PlayerMovement : MonoBehaviour {
 
 		if (inputX != 0 || inputY != 0) {
 			Vector2 playerInputVector = new Vector2 (inputX, inputY);
-			transform.Translate (playerInputVector * speed);
+			transform.Translate (playerInputVector * speed * Time.deltaTime);
 			anim.SetBool ("walk", true);
 		}
 		else {
 			anim.SetBool ("walk", false);
 		}
+	}
+		
+	void UseAbility() {
+		
+	}
+
+	void SwitchAbilitySets() {
+		if (Input.GetKeyDown (KeyCode.LeftShift)) {
+			AbilitiesManager.Instance.switchAbilitySets ();
+		}
+		
 	}
 }
