@@ -22,7 +22,6 @@ public class PlayerControls : MonoBehaviour {
 			Walk();
 
 			// Abilities
-			UseAbility();
 			SwitchAbilitySets ();
 		}
 	}
@@ -51,17 +50,10 @@ public class PlayerControls : MonoBehaviour {
 			anim.SetBool ("walk", false);
 		}
 	}
-		
-	void UseAbility() {
-		if (Input.GetButtonDown ("Fire1")) {
-			Debug.Log ("FIRE");
-		}
-	}
 
 	void SwitchAbilitySets() {
 		if (Input.GetKeyDown (KeyCode.LeftShift)) {
 			AbilitiesManager.Instance.switchAbilitySets ();
 		}
-		
 	}
 }

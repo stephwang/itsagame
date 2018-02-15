@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: b22eb989e1c38446db48ee355f9c5ae3
+timeCreated: 1518646163
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - fireSword: {fileID: 11400000, guid: b9c5ff2b7df404765acd50c8ee0bdaee, type: 2}
+  - waterSword: {fileID: 11400000, guid: db06a14d8cd964f62af09323e2515975, type: 2}
+  - iceSword: {fileID: 11400000, guid: a476c312df9374eb5a233884ce6ebbfc, type: 2}
+  - fireBow: {fileID: 11400000, guid: cb75d2d47f1104f9a84e601b1af8940c, type: 2}
+  - waterBow: {fileID: 11400000, guid: 87eb9a42ac92f44f481adfefd1f12486, type: 2}
+  - iceBow: {fileID: 11400000, guid: 8630b2ffa831e4a42a3138ac912ff802, type: 2}
+  - fireShield: {fileID: 11400000, guid: a30fa6690ee55480695057b3239b035e, type: 2}
+  - waterShield: {fileID: 11400000, guid: 2d3b25b05efda444683428cdd465bb32, type: 2}
+  - iceShield: {fileID: 11400000, guid: ba58dbd47319c41fb981e4db6041fce1, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
