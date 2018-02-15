@@ -14,15 +14,17 @@ public class PlayerControls : MonoBehaviour {
 
 	void Update()
 	{
-		// Keep character facing the mouse
-		UpdateRotation();
+		if (!UIController.menuActive) {
+			// Keep character facing the mouse
+			UpdateRotation();
 
-		// Movement
-		Walk();
+			// Movement
+			Walk();
 
-		// Abilities
-		UseAbility();
-		SwitchAbilitySets ();
+			// Abilities
+			UseAbility();
+			SwitchAbilitySets ();
+		}
 	}
 
 	// Rotates the character to face the mouse
@@ -51,7 +53,9 @@ public class PlayerControls : MonoBehaviour {
 	}
 		
 	void UseAbility() {
-		
+		if (Input.GetButtonDown ("Fire1")) {
+			Debug.Log ("FIRE");
+		}
 	}
 
 	void SwitchAbilitySets() {
