@@ -45,8 +45,12 @@ public class AbilityController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        bool canUseAbility = (cdLeft <= 0);
-        if (canUseAbility && isPrimarySet == isPrimarySetActive) {
+        bool canUseAbility = (
+            ability != null // there is an ability
+            && isPrimarySet == isPrimarySetActive // ability is part of the active set
+            && cdLeft <= 0 // ability is off cooldown
+        );
+        if (canUseAbility) {
             AbilityReady ();
             if (Input.GetButton (abilityButton) && !UIController.menuActive) {
                 TriggerAbility ();

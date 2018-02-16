@@ -1,10 +1,12 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class projectileController : MonoBehaviour {
+public class ProjectileController : AttackController {
 
-	void OnTriggerEnter2D (Collider2D other) {
-		Destroy(gameObject);
+	public override void OnTriggerEnter2D (Collider2D other) {
+		base.OnTriggerEnter2D(other);
+
+        Destroy(gameObject);
 	}
 }

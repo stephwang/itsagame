@@ -3,17 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class playerHealth : MonoBehaviour {
+public class PlayerHealth : Damageable {
 
-	private int health = 100;
-	Text healthText;
+	public Text healthText;
+	public static bool isDead = false;
 
 	void Start() {
-		healthText = GameObject.Find ("health").GetComponent<Text>();
 		setHealthText ();
 	}
 		
 	void setHealthText() {
-		healthText.text = string.Format ("Health: {0}", health);
+		healthText.text = string.Format ("Health: {0}", _currentHealth);
+	}
+
+	public override void TakeDamage(int damage) {
+		_currentHealth -= damage;
+		setHealthText();
+
+		if(_currentHealth <= 0) {
+			Die();
+		}
+	}
+
+	public override void Die() {
+		isDead = true;
+		Debug.Log("YOU'RE DEAD! GAME OVER!");
 	}
 }
