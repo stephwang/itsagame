@@ -11,7 +11,10 @@ public class MeleeAttack : Ability {
     public override void Initialize(GameObject abilityHolder) {
         meleeAttackScript = abilityHolder.GetComponent<MeleeAttackScript>();
     }
-    public override void TriggerAbility() {
 
+    public override void TriggerAbility() {
+        meleeAttackScript.aDamage = aDamage;
+        meleeAttackScript.animationName = this.name;
+        meleeAttackScript.Hit();
     }
 }

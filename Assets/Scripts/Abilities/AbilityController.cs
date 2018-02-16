@@ -48,7 +48,7 @@ public class AbilityController : MonoBehaviour {
         bool canUseAbility = (cdLeft <= 0);
         if (canUseAbility && isPrimarySet == isPrimarySetActive) {
             AbilityReady ();
-            if (Input.GetButtonDown (abilityButton) && !UIController.menuActive) {
+            if (Input.GetButton (abilityButton) && !UIController.menuActive) {
                 TriggerAbility ();
             }
         } else {

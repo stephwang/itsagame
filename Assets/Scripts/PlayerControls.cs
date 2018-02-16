@@ -8,6 +8,24 @@ public class PlayerControls : MonoBehaviour {
 	// Public variables
 	public float speed;
 
+	// Keep Player a singleton
+	private static PlayerControls _instance;
+	public static PlayerControls Instance { 
+		get { return _instance; } 
+	}
+
+	private void Awake() { 
+		// Enforce single instance
+		if (_instance != null && _instance != this) 
+		{ 
+			Destroy(this.gameObject);
+			return;
+		}
+
+		_instance = this;
+		DontDestroyOnLoad(this.gameObject);
+	}
+
 	void Start() {
 		anim = GetComponent<Animator> ();
 	}

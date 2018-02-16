@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class MeleeAttackScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+	[HideInInspector] public int aDamage;
+	[HideInInspector] public string animationName;
+	private Animator anim;
+
+	private void Start() {
+		anim = GetComponentInChildren<Animator>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	public void Hit() {
+		anim.SetTrigger(animationName);
 	}
 }
